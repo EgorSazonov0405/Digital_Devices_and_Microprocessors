@@ -76,9 +76,9 @@ Digital_Devices_and_Microprocessors/
 ## 🤝 Как внести вклад
 
 1. Форкните репозиторий
-2. Создайте ветку для ваших изменений (`git checkout -b feature/amazing-feature`)
+2. Создайте ветку для ваших изменений (`git checkout -b dev/amazing-feature`)
 3. Закоммитьте изменения (`git commit -m 'Add some amazing feature'`)
-4. Запушите в ветку (`git push origin feature/amazing-feature`)
+4. Запушите в ветку (`git push origin dev/amazing-feature`)
 5. Откройте Pull Request
 
 ## 📜 Лицензия
