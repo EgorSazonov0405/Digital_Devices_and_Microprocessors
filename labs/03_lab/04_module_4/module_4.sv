@@ -6,7 +6,7 @@ module lab34(
     input logic [3 : 0] din2,
     input logic [3 : 0] din3,
     input logic [1 : 0] addr,
-    input logic [3 : 0] an ,
+    output logic [3 : 0] an ,
     output logic [6 : 0] dout
 );
 
