@@ -3,6 +3,6 @@ module lab47 (
     output logic [9 : 0] y
 );
 logic [15:0] tmp;
-assign tmp = (x * 5 * 4) / 7; // Умножаем на 4 для получения 2 дробных битов
-assign y = tmp[9:0]; // Берем младшие 10 бит
+assign tmp = x * 183; // потому что 256*5/7
+assign y = tmp[15:6]; // Берем старшие 10 бит
 endmodule
