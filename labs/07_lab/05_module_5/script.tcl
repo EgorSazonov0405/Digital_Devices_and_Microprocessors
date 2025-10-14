@@ -1,0 +1,2 @@
+report_control_sets
+report_high_fanout_nets
