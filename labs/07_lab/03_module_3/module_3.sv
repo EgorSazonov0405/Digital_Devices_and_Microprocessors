@@ -8,6 +8,8 @@ module lab73 (
     logic [26:0] div_counter;
     logic [3:0] state_counter;
     logic [3:0] gray_rom [0:15];
+    logic cntr26d; // Задержанный бит счетчика
+    logic en;
 
     initial begin
         gray_rom[0] = 4'b0000;
@@ -28,17 +30,20 @@ module lab73 (
         gray_rom[15] = 4'b1000;
     end
     
-    always_ff @(posedge clk or posedge srst) begin
+    // Задержка бита счетчика
+    always_ff @(posedge clk) begin
         if (srst)
-            div_counter <= 0;
-        else
-            div_counter <= div_counter + 1;
+            cntr26d <= 0;
+        else 
+            cntr26d <= cntr[26];    
     end
+
+    assign en = cntr[26] and (~cntr26d);
 
     always_ff @(posedge clk or posedge srst) begin
         if (srst)
             state_counter <= 0;
-        else if (div_counter == 0)
+        else if (en)
             state_counter <= state_counter + 1;
     end
     
