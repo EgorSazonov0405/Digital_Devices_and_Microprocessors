@@ -27,12 +27,22 @@ module tb_lab82();
         #20;
         srst = 0;
         
-        #100; btn = 1; #10; btn = 0; // WAIT -> SUM
-        #100; btn = 1; #10; btn = 0; // SUM -> MUL
-        #100; btn = 1; #10; btn = 0; // MUL -> GRAY
-        #100; btn = 1; #10; btn = 0; // GRAY -> WAIT
+        #100; 
+        btn = 1; 
+        #10; 
+        btn = 0; // WAIT -> SUM
         
-        #100;
+        #100; 
+        btn = 1; 
+        #10; 
+        btn = 0; // SUM -> MUL
+        
+        #100; 
+        btn = 1; 
+        #10; 
+        btn = 0; // MUL -> GRAY
+        
+        #300;
         $stop;
     end
 endmodule

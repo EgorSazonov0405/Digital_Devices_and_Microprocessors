@@ -24,6 +24,7 @@ module tb_lab81();
 
         info = 1; #10;
         info = 1; #10;
+        info = 1; #10;
         info = 0; #10;
         info = 1; #10;
         

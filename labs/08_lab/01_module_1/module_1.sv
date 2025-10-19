@@ -5,7 +5,6 @@ module lab81 (
     output logic [1:0] coded
 );
 
-    // Состояния автомата как в примере
     typedef enum logic [1:0] {init_state, S1, S2, S3} t_state;
     t_state state, nextstate;
 
@@ -19,10 +18,10 @@ module lab81 (
     always_comb begin
         nextstate = state;
         case(state)
-            S0: if (info) nextstate = S1;
-            S1: if (info) nextstate = S3; else nextstate = S2;
-            S2: if (info) nextstate = S1; else nextstate = init_state;
-            S3: if (info) nextstate = S3; else nextstate = S2;
+            init_state: nextstate = info ? S1 : init_state;
+            S1: nextstate = info ? S3 : S2;
+            S2: nextstate = info ? S1 : init_state;
+            S3: nextstate = info ? S3 : S2;
             default: nextstate = init_state;
         endcase
     end
@@ -31,14 +30,8 @@ module lab81 (
         if (srst) begin
             coded <= 2'b00;
         end else begin
-            coded <= 2'b00; 
-            case(nextstate) 
-                init_state: if (info) coded <= 2'b11;
-                S1: if (info) coded <= 2'b00; else coded <= 2'b10;
-                S2: if (info) coded <= 2'b01; else coded <= 2'b11;
-                S3: if (info) coded <= 2'b10; else coded <= 2'b01;
-                default: ;
-            endcase
+            coded[1] <= info ^ state[1] ^ state[0];
+            coded[0] <= info ^ state[0];
         end
     end
 

@@ -54,10 +54,10 @@ module lab82 (
             y <= 8'b0; 
             case(nextstate)
                 STATE_WAIT: y <= {7'b0, blink_signal};
-                STATE_SUM:  y <= {5'b0, (x1 + x2)};
-                STATE_MUL:  y <= {2'b0, (x1 * x2)};
+                STATE_SUM:  y <= {5'b0, ({1'b0, x1} + {1'b0,x2})};
+                STATE_MUL:  y <= {2'b0, ({1'b0, x1} * {1'b0, x2})};
                 STATE_GRAY: y <= gray_counter ^ (gray_counter >> 1);
-                default: ;
+                default: y <= 8'b0;
             endcase
         end
     end
