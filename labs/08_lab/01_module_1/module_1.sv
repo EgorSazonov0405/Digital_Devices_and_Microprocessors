@@ -18,10 +18,10 @@ module lab81 (
     always_comb begin
         nextstate = state;
         case(state)
-            init_state: nextstate = info ? S1 : init_state;
-            S1: nextstate = info ? S3 : S2;
-            S2: nextstate = info ? S1 : init_state;
-            S3: nextstate = info ? S3 : S2;
+            init_state: nextstate = info ? S2 : init_state;
+            S1: nextstate = info ? S2 : init_state;
+            S2: nextstate = info ? S3 : S1;
+            S3: nextstate = info ? S3 : S1;
             default: nextstate = init_state;
         endcase
     end
@@ -30,8 +30,13 @@ module lab81 (
         if (srst) begin
             coded <= 2'b00;
         end else begin
-            coded[1] <= info ^ state[1] ^ state[0];
-            coded[0] <= info ^ state[0];
+            case (nextstate) 
+                init_state: coded <= info ? 2'b11 : 2'b00;
+                S1: coded <= info ? 2'b00 : 2'b11;
+                S2: coded <= info ? 2'b01 : 2'b10;
+                S3: coded <= info ? 2'b10 : 2'b01;
+                default: coded <= 2'b00;
+            endcase         
         end
     end
 
